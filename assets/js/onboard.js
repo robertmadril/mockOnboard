@@ -156,14 +156,14 @@ function isPyxPal() {
     $("#screen-prompt").text("Is this a PyxPal?");
     $("#moving-screen").append(ppConfirm);
     $("#moving-screen").append(ppDeny);
-    $("#process-view").html("<p>This screen is a back-end screen that checks the invitation table against the phone number to check if there is an invite for a PyxPal. This may be replaced or enhaced by universal deep linking.</p>");
+    $("#process-view").html("<p>This screen is a back-end function that checks the invitation table against the phone number to check if there is an invite for a PyxPal. This may be replaced or enhaced by universal deep linking.</p>");
 
     $(document).on("click", "#yes-pyxpal", function () {
         pyxPalTC();
     });
 
     $(document).on("click", "#no-pyxpal", function () {
-        idCheck();
+        inputDOB();
     });
 };
 
@@ -175,12 +175,28 @@ function pyxPalTC() {
     var signPPTC = createBtn("pp-tc", "btn btn-info col-sm-6", "Sign PyxPal T's and C's");
     $("#moving-screen").append(signPPTC);
     $("#screen-prompt").text("PyxPal Terms and Conditions go here.");
-    $("#process-screen").html("<p>Terms and Conditions screen for PyxPals");
+    $("#process-view").html("<p>Terms and Conditions screen for PyxPals to prompt user to sign PyxPal-specific documents</p>");
 
     $(document).on("click", "#pp-tc", function () {
         pyxHome();
     });
 
+}
+
+//This assumes that this is a HiFriend or Network member, so user will be prompted for date of birth
+function inputDOB() {
+    emptyFields();
+    $("#screen-prompt").empty();
+
+    var dobField = createBtn("input-dob", "btn btn-info col-sm-6", "Input Date of Birth");
+
+    $("#moving-screen").append(dobField);
+    $("#screen-prompt").text("Please enter your date of birth.");
+    $("#process-view").html("<p>Since we are not asking PyxPals for a DOB, this is prompted after it is determined that there is no active invitation for this user.</p>")
+
+    $(document).on("click", "#input-dob", function () {
+        idCheck();
+    });
 }
 
 //This function is the check for medicaid/medicare ID (change button color to denote non-user input)
@@ -203,7 +219,41 @@ function idCheck() {
     $(document).on("click", "#no-id", function () {
         hifriendTC();
     });
-}
+};
+
+//This is the in-network terms and conditions
+function networkTC() {
+
+    emptyFields();
+    $("#screen-prompt").empty();
+
+    var signPPTC = createBtn("n-tc", "btn btn-info col-sm-6", "Sign Network T's and C's");
+    $("#moving-screen").append(signPPTC);
+    $("#screen-prompt").text("Network Terms and Conditions go here.");
+    $("#process-view").html("<p>Terms and Conditions screen for in-network members to prompt user to sign network-specific documents</p>");
+
+    $(document).on("click", "#n-tc", function () {
+        pyxHome();
+    });
+
+};
+
+//This is the hifriend terms and conditions page
+function hifriendTC() {
+
+    emptyFields();
+    $("#screen-prompt").empty();
+
+    var signPPTC = createBtn("hf-tc", "btn btn-info col-sm-6", "Sign HiFriend T's and C's");
+    $("#moving-screen").append(signPPTC);
+    $("#screen-prompt").text("HiFriend Terms and Conditions go here.");
+    $("#process-view").html("<p>Terms and Conditions screen for PyxPals to prompt user to sign PyxPal-specific documents</p>");
+
+    $(document).on("click", "#hf-tc", function () {
+        pyxHome();
+    });
+
+};
 
 //dashboard page, wave that checkered flag
 function pyxHome() {
