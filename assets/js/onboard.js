@@ -1,13 +1,13 @@
 /* To-do:
 
 Let’s get started: 
-Enter Medicaid or email (isID?),Create password
+Enter Medicaid/email/google
 
 isPyxPal (check invitation table)?
 Yes: pyxPalT&C—Home
 No: DOB input, MID Check
 
-MID Check: Yes: Network T&C—Home
+MID Check (verify if it's even an ID): Yes: Network T&C—Home
 No: HiFriend T&C—Home
 
 Nice to haves:
@@ -40,7 +40,7 @@ function startPage() {
 
     $("#moving-screen").append(newUser);
     $("#moving-screen").append(returnUser);
-    $("#process-view").text('This is the first screen. New users will click "Let\'s get started". Returning users will click "Have an account?"');
+    $("#process-view").text('This is the first screen. New users will click "Let\'s get started." Returning users will click "Have an account?"');
     $("#screen-prompt").append("Welcome to Pyx");
 
     //don't need on click functions here because they were used at the bottom of the file at initial page load
@@ -141,7 +141,7 @@ function isPyxPal() {
 
 //This function is the check for medicaid/medicare ID (change button color to denote non-user input)
 function idCheck() {
-    
+
 }
 
 //dashboard page, wave that checkered flag
