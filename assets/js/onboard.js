@@ -1,23 +1,26 @@
 /* To-do:
 
-(login modal)
-
 Let’s get started: 
 Enter Medicaid or email (isID?),Create password
 
 isPyxPal (check invitation table)?
 Yes: Create account—T&C—Home
-No: MID check
+No: DOB input, MID check
 
 MID Check: yes: Network T&C—Home
 No: HiFriend T&C—Home
 
+Nice to haves:
+(login modal)
  */
+
+//This function emptys fields needed for DRY code
 function emptyFields() {
     $("#moving-screen").empty();
     $("#process-view").empty();
 };
 
+//This function creates a new button in the JQuery populating functions
 function createBtn(idName, className, txt) {
     var newBtn = $("<button>");
     newBtn.addClass(className);
@@ -27,6 +30,7 @@ function createBtn(idName, className, txt) {
     return newBtn
 }
 
+//Displays the first onboard page
 function startPage() {
     emptyFields();
     $("#screen-prompt").empty();
@@ -41,6 +45,7 @@ function startPage() {
 
 };
 
+//first page for returning users
 function loginPage() {
     emptyFields();
 
@@ -63,6 +68,7 @@ function loginPage() {
     });
 };
 
+//verify phone number for returning users with proper credentials
 function verifyPhone() {
     emptyFields();
     $("#screen-prompt").empty();
@@ -87,6 +93,7 @@ function verifyPhone() {
     });
 };
 
+//page for returning users with a new phone #
 function inputNewPhone() {
     emptyFields();
     $("#screen-prompt").empty();
@@ -102,6 +109,7 @@ function inputNewPhone() {
     });
 }
 
+//forgot account page, basically just redirects them to call support
 function forgotAccount() {
 
     emptyFields();
@@ -119,6 +127,7 @@ function forgotAccount() {
     });
 };
 
+//dashboard page, wave that checkered flag
 function pyxHome() {
 
     emptyFields();
@@ -137,10 +146,10 @@ function pyxHome() {
     });
 }
 
+//initiating functions from first load
 $(document).on("click", "#returning-user", function () {
     loginPage();
 });
-
 
 $(document).on("click", "#new-user", function () {
     createNew();
