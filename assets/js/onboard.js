@@ -1,8 +1,5 @@
 /* To-do:
 
-Let’s get started: 
-Enter Medicaid/email/google
-
 isPyxPal (check invitation table)?
 Yes: pyxPalT&C—Home
 No: DOB input, MID Check
@@ -131,17 +128,81 @@ function forgotAccount() {
 
 //This function will be where the user inputs their e-mail/MID, password and OTP phone (lack of OTP will redirect to this page)
 function createNew() {
-    console.log("Create user page")
+
+    emptyFields();
+    $("#screen-prompt").empty();
+
+    var inputAll = createBtn("input-create", "btn btn-info col-sm-6", "Complete Input");
+
+    $("#screen-prompt").text("Please input a Medicaid/Medicare ID or e-mail address (maybe Google and Facebook?), Create a Password, and Input Phone Number.");
+    $("#moving-screen").append(inputAll);
+    $("#process-view").html("<p>Users will ask to input three fields in this section: Account Name (Medicaid/Medicare ID or e-mail), create a password, then input phone number. OTP will be prompted from here, as well. If there is no valid OTP, users will be redireced to this page.</p>");
+
+    $(document).on("click", "#input-create", function () {
+        isPyxPal();
+    });
+
 };
 
 //This function will outline the behind-the scenes check for a pyxpal (change button color to denote non-user input)
 function isPyxPal() {
+    
+    emptyFields();
+    $("#screen-prompt").empty();
+
+    var ppConfirm = createBtn("yes-pyxpal", "btn btn-secondary col-sm-4", "Is a PyxPal");
+    var ppDeny = createBtn("no-pyxpal", "btn btn-secondary col-sm-4", "Is not a PyxPal");
+
+    $("#screen-prompt").text("Is this a PyxPal?");
+    $("#moving-screen").append(ppConfirm);
+    $("#moving-screen").append(ppDeny);
+    $("#process-view").html("<p>This screen is a back-end screen that checks the invitation table against the phone number to check if there is an invite for a PyxPal. This may be replaced or enhaced by universal deep linking.</p>");
+
+    $(document).on("click", "#yes-pyxpal", function () {
+        pyxPalTC();
+    });
+
+    $(document).on("click", "#no-pyxpal", function () {
+        idCheck();
+    });
+};
+
+//This ends the pyxpal route and returns the dashboard page as the only exit route.
+function pyxPalTC() {
+    emptyFields();
+    $("#screen-prompt").empty();
+
+    var signPPTC = createBtn("pp-tc", "btn btn-info col-sm-6", "Sign PyxPal T's and C's");
+    $("#moving-screen").append(signPPTC);
+    $("#screen-prompt").text("PyxPal Terms and Conditions go here.");
+    $("#process-screen").html("<p>Terms and Conditions screen for PyxPals");
+
+    $(document).on("click", "#pp-tc", function () {
+        pyxHome();
+    });
 
 }
 
 //This function is the check for medicaid/medicare ID (change button color to denote non-user input)
 function idCheck() {
+    emptyFields();
+    $("#screen-prompt").empty();
 
+    var idConfirm = createBtn("yes-id", "btn btn-secondary col-sm-4", "ID Match");
+    var idDeny = createBtn("no-id", "btn btn-secondary col-sm-4", "No Match");
+
+    $("#moving-screen").append(idConfirm);
+    $("#moving-screen").append(idDeny);
+    $("#screen-prompt").text("Does the account name match a network profile?");
+    $("#process-view").html("<p>This is another back-end check that initiall parses out ID's as the account name. Any non-ID account is placed into a HiFriend profile. An ID that matches will be placed into a network profile. An ID that does not match will be placed into a HiFriend profile</p>");
+
+    $(document).on("click", "#yes-id", function () {
+        networkTC();
+    });
+
+    $(document).on("click", "#no-id", function () {
+        hifriendTC();
+    });
 }
 
 //dashboard page, wave that checkered flag
