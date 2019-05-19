@@ -1,14 +1,8 @@
 /* To-do:
 
-isPyxPal (check invitation table)?
-Yes: pyxPalT&C—Home
-No: DOB input, MID Check
-
-MID Check (verify if it's even an ID): Yes: Network T&C—Home
-No: HiFriend T&C—Home
-
 Nice to haves:
 (login modal)
+
  */
 
 //This function emptys fields needed for DRY code
