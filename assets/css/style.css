@@ -1,7 +1,11 @@
-#action-container {
-
+body {
+    padding-bottom: 120px;
 }
 
-#header-page {
-
+.footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 114px;
 }
