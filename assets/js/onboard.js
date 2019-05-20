@@ -204,7 +204,7 @@ function idCheck() {
     $("#moving-screen").append(idConfirm);
     $("#moving-screen").append(idDeny);
     $("#screen-prompt").text("Does the account name match a network profile?");
-    $("#process-view").html("<p>This is another back-end check that initiall parses out ID's as the account name. Any non-ID account is placed into a HiFriend profile. An ID that matches will be placed into a network profile. An ID that does not match will be placed into a HiFriend profile</p>");
+    $("#process-view").html("<p>This is another back-end check that initially parses out ID's as the account name. Any non-ID account or ID that does not match the profile table is placed into a HiFriend profile. An ID that matches  our network profile tables will be placed into a network profile.</p>");
 
     $(document).on("click", "#yes-id", function () {
         networkTC();
